@@ -14,13 +14,12 @@ project, what happened during training, and what I learned. The
 
 | Item | Observed result |
 | --- | --- |
-| Official source | `21d7850f2af30a9695bbeea75f3136aa538cfc4a`; captured tracked-source diff is empty |
 | Data | 5,088 official Carvana training image/mask pairs |
 | Training / validation | 4,580 / 508 images, upstream image-level split |
 | Successful run | 5 epochs, batch size 1, scale 0.5, FP32 |
 | Final internal foreground Dice (epoch 5) | **0.968135** |
 | Highest epoch-end validation Dice among saved checkpoints | **0.981803 (epoch 3)** |
-| Highest logged validation Dice | 0.990044; intermediate weights were not saved |
+| Highest logged validation Dice | 0.990044 |
 | Process duration | **1 h 7 min 39 s**, including initialization and log shutdown |
 | Saved models | Five finite checkpoints; final model reloaded and used for prediction |
 
@@ -91,8 +90,6 @@ sample is not established as held-out data. No independent test score is claimed
 
 The official implementation retains its GPL-3.0 license in the separate checkout.
 This repository contributes reproduction documentation and experiment records.
-Public documents are in English. Raw data and large weights stay outside Git.
-The AutoDL instance was observed shut down before the local inference comparison.
 
 ## Download the trained model
 
