@@ -60,7 +60,6 @@ downloading through the Kaggle website.
 5. Reload the final checkpoint with the original predictor and inspect the output.
 6. Export metrics/figures and verify the downloaded backup before cloud shutdown.
 
-The [AutoDL runbook](docs/AUTODL_RUNBOOK.md) documents the operational route.
 The Mac is the editor/client; training executes on the Linux cloud GPU.
 The community image supplies the runtime only; its code, subset, and old weights
 are excluded. Local Docker is unnecessary.
@@ -79,7 +78,7 @@ python -u train.py --epochs 5 --batch-size 1 --learning-rate 1e-5 --scale 0.5 --
 | `reports/` | Completed English report and selected figures |
 | `records/carvana-baseline-02-fp32/` | Exported metrics, timestamps, source/dependency records, and checksums |
 | `records/carvana-baseline-01/` | Failure notes and diagnostic results |
-| `docs/` | AutoDL operations, environment record, upstream review, report template |
+| `docs/` | Recorded training environment |
 | `Pytorch-UNet/` | Separate official checkout, ignored by the outer repository |
 | `artifacts/` | Verified local backup including raw logs, W&B files, and weights; ignored |
 | `notes/` | Private learning notes; ignored |
@@ -94,6 +93,32 @@ The official implementation retains its GPL-3.0 license in the separate checkout
 This repository contributes reproduction documentation and experiment records.
 Public documents are in English. Raw data and large weights stay outside Git.
 The AutoDL instance was observed shut down before the local inference comparison.
+
+## Download the trained model
+
+The selected epoch-3 weights are available in the
+[v1.0.0 release](https://github.com/tommie-04/U-net/releases/tag/v1.0.0):
+
+- [checkpoint_epoch3.pth](https://github.com/tommie-04/U-net/releases/download/v1.0.0/checkpoint_epoch3.pth) — approximately 118.5 MiB.
+- [SHA256 checksum](https://github.com/tommie-04/U-net/releases/download/v1.0.0/checkpoint_epoch3.pth.sha256).
+
+From the official `Pytorch-UNet` repository directory, download and verify it:
+
+```bash
+mkdir -p checkpoints
+curl --fail --location \
+  https://github.com/tommie-04/U-net/releases/download/v1.0.0/checkpoint_epoch3.pth \
+  --output checkpoints/checkpoint_epoch3.pth
+curl --fail --location \
+  https://github.com/tommie-04/U-net/releases/download/v1.0.0/checkpoint_epoch3.pth.sha256 \
+  --output checkpoints/checkpoint_epoch3.pth.sha256
+(cd checkpoints && shasum -a 256 -c checkpoint_epoch3.pth.sha256)
+```
+
+The checkpoint uses three input channels, two classes, transposed convolution
+upsampling (`bilinear=False`), and mask values `[0, 1]`. It contains model state,
+not a complete training-resume snapshot. Use scale 0.5 for the prediction example
+below. The cloud training environment is documented in the report.
 
 ## Try a single image
 
@@ -110,8 +135,9 @@ python predict.py \
   --scale 0.5
 ```
 
-The weights and dataset are not included in this documentation repository.
-Use the checkpoint produced by your training run or restore it from your backup.
+The weights are distributed as a release attachment rather than tracked in Git.
+The dataset must be obtained from Kaggle separately. You can also use the
+checkpoint produced by your own training run.
 To try another RGB image, replace the input and output paths. A reference mask
 is not needed for prediction; it is needed to compare against the correct
 segmentation.

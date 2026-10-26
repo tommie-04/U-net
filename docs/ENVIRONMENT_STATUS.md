@@ -30,7 +30,8 @@ justified solely by that stale label. Keep the existing environment initially.
 A subsequent user transcript confirms the official cloud checkout at
 `/root/autodl-tmp/Pytorch-UNet`, HEAD
 `21d7850f2af30a9695bbeea75f3136aa538cfc4a`. Both torch and torchvision imports
-succeeded. See `records/setup/` for the observed source and environment records.
+succeeded. Source revision and installed package versions are retained with the
+successful run under `records/carvana-baseline-02-fp32/`.
 The five upstream requirements were subsequently verified at their pinned
 versions; pip check passed. Official data preparation and a five-epoch FP32 run
 completed. The final checkpoint was reloaded for prediction. See

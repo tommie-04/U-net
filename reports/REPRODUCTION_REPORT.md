@@ -194,5 +194,4 @@ its predictions. I still need more practice explaining the training code and
 the causes of numerical failures.
 
 The [experiment details](EXPERIMENT_DETAILS.md) contain the full configuration,
-metric definitions, source and checkpoint records, and backup checks. The
-[AutoDL runbook](../docs/AUTODL_RUNBOOK.md) records the operational steps.
+metric definitions, source and checkpoint records, and backup checks.

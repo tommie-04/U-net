@@ -13,10 +13,10 @@ The first point of numerical failure is unknown from this excerpt.
 A saved checkpoint does not establish finite weights or valid learning.
 
 Status: abnormal attempt; user instructed to stop the training child process
-and retain logs/checkpoints. Actual stop and exit status remain unconfirmed.
+and retain logs/checkpoints. The archived exit code is 143, confirming termination by SIGTERM.
 No checkpoint from this attempt is accepted as a successful baseline.
 
-Diagnosis pending: inspect checkpoint finiteness and numerical behavior.
+Checkpoint inspection subsequently confirmed non-finite tensors; see below.
 AMP is a candidate to test, not a confirmed cause. Do not load this checkpoint
 as the initial state of a clean retry or overwrite this attempt's evidence.
 
@@ -35,5 +35,4 @@ The root cause remains unconfirmed.
 
 The user authorized preparing a new five-epoch FP32 run. The next command
 archives the failed checkpoints and starts from random initialization, omitting
-`--amp`; all other CLI settings remain unchanged. Actual launch is pending
-user execution. The failed attempt remains separate from the retry.
+`--amp`; all other CLI settings remain unchanged. The subsequent FP32 run completed five epochs with exit code 0. The failed attempt remains separate from the retry.
