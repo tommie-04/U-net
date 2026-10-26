@@ -10,4 +10,5 @@ the underlying run files were retained. The downloaded archive remains in Downlo
 
 See `artifacts/autodl-backup-2026-10-26/LOCAL_BACKUP_VERIFICATION.json` for the
 verification receipt. Raw competition data is not included in the archive.
-Cloud shutdown remains user-operated and has not been confirmed.
+Cloud shutdown was subsequently observed in the AutoDL console before the
+local checkpoint comparison. No cloud restart was performed for that comparison.

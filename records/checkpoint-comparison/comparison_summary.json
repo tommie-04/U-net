@@ -1,0 +1,54 @@
+{
+  "inference_environment": {
+    "python": "3.12.14",
+    "torch": "2.2.2",
+    "numpy": "1.26.4",
+    "device": "cpu",
+    "scale": 0.5
+  },
+  "epochs_compared": [
+    3,
+    5
+  ],
+  "checkpoint_sha256": {
+    "3": "a75f9dbe428ba736122372168f81e6c85ff6b9ae1668595e966501642dcf5bce",
+    "5": "7089b7d4fa3cb7be7d86384c685214fc15ded9e9d3b93e4bd61580e68f120348"
+  },
+  "sample_ids": [
+    "a1038b207299_14",
+    "00087a6bd4dc_01",
+    "26ccab021981_01",
+    "40851e617b93_01",
+    "683ddec95b82_01",
+    "880fec285c06_01",
+    "bb2f95262773_01",
+    "dc995bf5296a_01",
+    "fff9b3a5373f_01"
+  ],
+  "sampling_rule": "Original displayed sample plus angle 01 of eight evenly spaced car IDs in lexicographic order.",
+  "showcase_selection": "Auxiliary selected_example.png only: highest epoch-3 Dice among the fixed nine samples. This auxiliary selection is not the README image.",
+  "selected_sample": "00087a6bd4dc_01",
+  "original_sample_dice": {
+    "3": 0.9907648259425142,
+    "5": 0.9337276539682101
+  },
+  "selected_sample_dice": {
+    "3": 0.9943395704162976,
+    "5": 0.9923966652364278
+  },
+  "mean_sample_dice": {
+    "3": 0.9877003765740066,
+    "5": 0.9826137558853721
+  },
+  "limitations": "Same acquired training-image pool; actual split membership unknown. Sample Dice uses original-resolution predictions, unlike logged resized-resolution validation. Local inference package versions differ from cloud training. These sample scores are not an independent test score or a replacement for logged validation.",
+  "readme_display_sample": "a1038b207299_14",
+  "readme_selection_reason": "Retained the pre-existing display image for a direct same-image comparison; checkpoint selected by logged epoch-end validation Dice.",
+  "cloud_cpu_agreement": {
+    "sample_id": "a1038b207299_14",
+    "epoch": 5,
+    "cloud_device": "cuda",
+    "local_device": "cpu",
+    "same_shape": true,
+    "pixel_agreement": 0.9999967413972889
+  }
+}

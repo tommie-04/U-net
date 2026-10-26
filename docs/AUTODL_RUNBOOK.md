@@ -4,7 +4,7 @@ Status: five FP32 epochs completed and artifacts verified locally. The initial
 AMP attempt failed with non-finite tensors. The successful command omits `--amp`;
 see [the completed report](../reports/REPRODUCTION_REPORT.md). The procedure below
 describes the setup and uses the successful FP32 command. It is not a
-recommendation to overwrite the completed attempts. Cloud shutdown is unconfirmed.
+recommendation to overwrite the completed attempts. Cloud shutdown was subsequently observed before local inference comparison.
 
 ## Target and resources
 

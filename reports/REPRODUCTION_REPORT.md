@@ -128,14 +128,27 @@ After training, I checked that all five checkpoints contained only finite
 floating-point values. I then loaded the final checkpoint with the original
 `predict.py` script and saved a predicted mask.
 
-![Original image, reference mask, and final-model prediction](figures/prediction_comparison.png)
+![Original image, reference mask, and selected epoch-3 prediction](figures/prediction_comparison_epoch3.png)
 
-The prediction follows much of the car's shape, but it also includes background
-on both sides of the car. Seeing this error was useful: a high average validation
-score does not mean every image has a clean boundary. This particular image was
-used for the initial input check, and I did not record whether it belonged to
-the training or validation split. I therefore use it only as a visual example,
-not as evidence of performance on an unseen image.
+The first prediction used the final checkpoint, epoch 5, and included too much
+background on both sides of the car. I then compared it with epoch 3, which had
+the highest logged validation Dice at an epoch boundary among the five saved
+models. Using the same image, the original-resolution Dice improved from
+**0.9337 with epoch 5 to 0.9908 with epoch 3**. The figure above shows epoch 3;
+the [epoch-5 result](figures/prediction_comparison.png) is still available.
+
+This helped me understand why the last saved model is not always the one I
+should choose for prediction. The choice of epoch 3 comes from its logged
+validation result; I did not retrain or edit the predicted mask. These two
+single-image scores use the original image resolution and are separate from
+the training script's validation averages.
+
+I kept the original image instead of replacing it with a different car. Its
+actual split membership was not saved, so I cannot call it a held-out example.
+I also compared the two checkpoints on a fixed set of nine images; the full
+scores and local CPU inference setup are in the
+[comparison notes](CHECKPOINT_COMPARISON.md). Those samples are descriptive and
+do not provide a new independent test score.
 
 ## What I learned
 

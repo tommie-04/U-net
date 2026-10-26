@@ -1,0 +1,8 @@
+{
+  "sample_id": "a1038b207299_14",
+  "epoch": 5,
+  "cloud_device": "cuda",
+  "local_device": "cpu",
+  "same_shape": true,
+  "pixel_agreement": 0.9999967413972889
+}

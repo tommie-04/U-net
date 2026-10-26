@@ -18,7 +18,8 @@ project, what happened during training, and what I learned. The
 | Data | 5,088 official Carvana training image/mask pairs |
 | Training / validation | 4,580 / 508 images, upstream image-level split |
 | Successful run | 5 epochs, batch size 1, scale 0.5, FP32 |
-| Final internal foreground Dice | **0.968135** |
+| Final internal foreground Dice (epoch 5) | **0.968135** |
+| Highest epoch-end validation Dice among saved checkpoints | **0.981803 (epoch 3)** |
 | Highest logged validation Dice | 0.990044; intermediate weights were not saved |
 | Process duration | **1 h 7 min 39 s**, including initialization and log shutdown |
 | Saved models | Five finite checkpoints; final model reloaded and used for prediction |
@@ -91,19 +92,19 @@ sample is not established as held-out data. No independent test score is claimed
 
 The official implementation retains its GPL-3.0 license in the separate checkout.
 This repository contributes reproduction documentation and experiment records.
-Public documents are in English. Git staging, commits, and pushes remain
-user-operated. Cloud shutdown is not yet confirmed in the local record.
+Public documents are in English. Raw data and large weights stay outside Git.
+The AutoDL instance was observed shut down before the local inference comparison.
 
 ## Try a single image
 
 After training, run the following from the official `Pytorch-UNet` repository
-directory, using the prepared Python environment. It loads the epoch-5 weights
+directory, using the prepared Python environment. It loads epoch 3, selected by the highest logged epoch-end validation Dice,
 and predicts a mask for one image:
 
 ```bash
 mkdir -p predictions
 python predict.py \
-  --model checkpoints/checkpoint_epoch5.pth \
+  --model checkpoints/checkpoint_epoch3.pth \
   --input data/imgs/a1038b207299_14.jpg \
   --output predictions/a1038b207299_14_pred.png \
   --scale 0.5
@@ -117,14 +118,22 @@ segmentation.
 
 ### Prediction comparison
 
-The figure below shows the original image, its reference mask, and the prediction
-from the reloaded epoch-5 model. White marks the car and black marks the background
-in both masks.
+The figure below uses **epoch 3**, which had the highest logged epoch-end
+validation Dice among the five saved checkpoints (0.981803). Epoch 5 is the last
+checkpoint, but it is not automatically the best one. The original display image
+was retained for this comparison.
 
-![Original image, reference mask, and epoch-5 prediction](reports/figures/prediction_comparison.png)
+![Original image, reference mask, and epoch-3 prediction](reports/figures/prediction_comparison_epoch3.png)
 
-The model captures much of the car silhouette but incorrectly includes some
-background on both sides. This is a visual example; the sample's membership in
-the training or validation split was not recorded. To inspect another example,
-compare its original image, matching reference mask (if available), and saved
-prediction side by side.
+White marks the car and black marks the background. On this same image, Dice at
+the original resolution was **0.9908 for epoch 3**, compared with **0.9337 for
+epoch 5**. Epoch 3 removes most of the extra background seen in the earlier
+prediction, although small boundary errors remain. These are single-image
+scores, not the resized-resolution validation averages in the results table.
+
+The image's actual training/validation membership was not recorded. This is a
+qualitative example, not an independent test result. See the
+[same-image comparison of both checkpoints](reports/figures/original_sample_epoch_comparison.png)
+and [comparison notes](reports/CHECKPOINT_COMPARISON.md) for the sampling method,
+local inference environment, and all sample scores. The
+[earlier epoch-5 figure](reports/figures/prediction_comparison.png) is retained.

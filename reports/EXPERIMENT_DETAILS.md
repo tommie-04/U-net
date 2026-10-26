@@ -149,6 +149,21 @@ car silhouette but includes visible background on both sides, particularly
 along the horizontal midsection. The example documents an error rather than
 establishing uniformly accurate boundaries. No per-image Dice was measured here.
 
+## Subsequent saved-checkpoint comparison
+
+After reviewing the initial epoch-5 prediction, epoch 3 was selected by its
+logged epoch-end validation Dice of 0.981803, the highest among the five saved
+epoch boundaries. This leaves the successful training run and its final
+validation score unchanged.
+
+On the same display image, local CPU prediction at scale 0.5 produced
+original-resolution Dice 0.9908 for epoch 3 and 0.9337 for epoch 5. Local and
+cloud epoch-5 binary predictions agreed on 99.999674% of pixels for this image.
+The local inference package versions differ from the cloud training stack.
+See [the comparison notes](CHECKPOINT_COMPARISON.md) for the fixed sample list,
+per-image scores, environment, and reproducible command. The original epoch-5
+figure above is retained as an earlier result.
+
 ## Artifact verification and limitations
 
 All five successful checkpoints are 124,241,221 bytes each. Each passed the
@@ -165,7 +180,8 @@ global random states, and optimizer/scheduler/scaler resume state were not saved
 Consequently, bit-for-bit retraining and full-state continuation are not claimed.
 There was no separate test-set evaluation or Kaggle submission. Internal
 validation is not directly comparable to the repository's competition score.
-Cloud shutdown and total billed cost have not been verified in the local record.
+Cloud shutdown was subsequently observed in the AutoDL console before local
+inference comparison. Total billed cost has not been verified.
 
 ## Skills exercised
 

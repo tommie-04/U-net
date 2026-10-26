@@ -1,0 +1,8 @@
+# Local Mac CPU inference environment; separate from the original cloud training stack.
+# Python 3.12 was used. Install the official repository separately.
+torch==2.2.2
+torchvision==0.17.2
+numpy==1.26.4
+Pillow==10.4.0
+matplotlib==3.8.4
+tqdm==4.64.1
