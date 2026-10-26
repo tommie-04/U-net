@@ -87,7 +87,7 @@ def main():
                 ax.set_title(f'Epoch {epoch} | Dice {lookup[(sample_id, epoch)]:.4f}')
             for ax in axes:
                 ax.axis('off')
-            fig.suptitle(f'{sample_id} | Qualitative example; split membership unknown')
+            fig.suptitle(f'{sample_id}')
             fig.tight_layout()
             fig.savefig(args.output_dir / filename, dpi=170)
             plt.close(fig)
@@ -109,7 +109,7 @@ def main():
             ax.set_title(title)
         for ax in axes:
             ax.axis('off')
-        fig.suptitle(f'{original_id} | Same display sample; split membership unverified')
+        fig.suptitle(f'{original_id}')
         fig.tight_layout()
         fig.savefig(args.output_dir / 'prediction_comparison_epoch3.png', dpi=180)
         plt.close(fig)
