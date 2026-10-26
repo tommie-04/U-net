@@ -1,0 +1,16 @@
+{
+  "checkpoint": "checkpoints/checkpoint_epoch1.pth",
+  "nonfinite_tensor_count": 100,
+  "nonfinite_tensor_examples": [
+    "inc.double_conv.0.weight",
+    "inc.double_conv.1.weight",
+    "inc.double_conv.1.bias",
+    "inc.double_conv.1.running_mean",
+    "inc.double_conv.1.running_var",
+    "inc.double_conv.3.weight",
+    "inc.double_conv.4.weight",
+    "inc.double_conv.4.bias",
+    "inc.double_conv.4.running_mean",
+    "inc.double_conv.4.running_var"
+  ]
+}

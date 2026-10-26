@@ -1,0 +1,7 @@
+{
+  "validation_events": 25,
+  "final_validation_dice": 0.9681347608566284,
+  "best_logged_validation_dice": 0.9900444149971008,
+  "loss_note": "Sampled batch losses from terminal progress; not epoch means.",
+  "comparison_note": "Display sample is not established as held-out validation."
+}

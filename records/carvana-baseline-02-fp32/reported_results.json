@@ -1,0 +1,22 @@
+{
+  "evidence_source": "user-provided cloud terminal excerpts",
+  "official_commit": "21d7850f2af30a9695bbeea75f3136aa538cfc4a",
+  "wandb_run_id": "vh26aivs",
+  "epochs_completed_reported": 5,
+  "training_samples": 4580,
+  "validation_samples": 508,
+  "steps_reported": 22900,
+  "amp": false,
+  "learning_rate_reported": 1e-05,
+  "final_displayed_batch_loss": 0.00808,
+  "final_logged_validation_dice": 0.9681347608566284,
+  "epoch5_penultimate_logged_validation_dice": 0.9798467755317688,
+  "epoch5_duration_displayed": "00:13:22",
+  "checkpoint5_saved_message": true,
+  "wandb_finish_success_message": true,
+  "checkpoint_finiteness_and_reload_verified": true,
+  "raw_artifacts_downloaded_to_mac": true,
+  "note": "All five checkpoints passed cloud finite-tensor checks and matched their SHA256 manifest after local backup extraction. The final model reloaded and produced a prediction through the official script. Exit code 0 and metrics exports were verified from downloaded records. Last batch loss is not an epoch mean. Exact split membership was not saved. Cloud shutdown remains unconfirmed.",
+  "best_logged_validation_dice": 0.9900444149971008,
+  "best_logged_validation_step": 21068
+}

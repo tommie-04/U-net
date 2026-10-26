@@ -1,9 +1,29 @@
+# Separate official checkout and private learning notes
+/Pytorch-UNet/
+/notes/
+AGENTS.md
+
+# Environments and temporary files
 .venv/
 __pycache__/
 *.py[cod]
-.DS_Store
 .ipynb_checkpoints/
-.cache/
-data/
-notes/
-AGENTS.md
+.DS_Store
+
+# Raw data, weights, and large runtime outputs
+/data/
+/checkpoints/
+/out/
+/wandb/
+/artifacts/
+*.pth
+*.pt
+*.zip
+
+# Credentials
+.env
+.env.*
+!.env.example
+kaggle.json
+.kaggle/
+access_token

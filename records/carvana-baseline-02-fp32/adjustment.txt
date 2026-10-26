@@ -1,0 +1,4 @@
+Fresh random initialization; no checkpoint loaded.
+AMP disabled after the initial AMP attempt produced NaN loss and
+non-finite checkpoint tensors. A 10-step FP32 diagnostic passed.
+Root cause is not yet established. Other CLI settings are unchanged.

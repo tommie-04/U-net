@@ -1,0 +1,32 @@
+[
+  {
+    "epoch": 1,
+    "path": "checkpoints/checkpoint_epoch1.pth",
+    "bytes": 124241221,
+    "nonfinite_tensors": []
+  },
+  {
+    "epoch": 2,
+    "path": "checkpoints/checkpoint_epoch2.pth",
+    "bytes": 124241221,
+    "nonfinite_tensors": []
+  },
+  {
+    "epoch": 3,
+    "path": "checkpoints/checkpoint_epoch3.pth",
+    "bytes": 124241221,
+    "nonfinite_tensors": []
+  },
+  {
+    "epoch": 4,
+    "path": "checkpoints/checkpoint_epoch4.pth",
+    "bytes": 124241221,
+    "nonfinite_tensors": []
+  },
+  {
+    "epoch": 5,
+    "path": "checkpoints/checkpoint_epoch5.pth",
+    "bytes": 124241221,
+    "nonfinite_tensors": []
+  }
+]
