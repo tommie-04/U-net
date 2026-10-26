@@ -27,12 +27,28 @@ project, what happened during training, and what I learned. The
 
 The initial AMP attempt produced NaN loss and non-finite checkpoint tensors.
 A fresh FP32 run completed successfully without changing upstream source.
-The numerical root cause remains unconfirmed. The highest validation point
-is not the score of the saved final checkpoint. This is a quick-start workflow
-reproduction, not a reproduction of the author's competition result.
 
 The report includes the failed AMP attempt, successful FP32 run, results,
 prediction errors, and limitations of this first reproduction.
+
+## Dataset
+
+The training data is available from the
+[Carvana Image Masking Challenge on Kaggle](https://www.kaggle.com/c/carvana-image-masking-challenge).
+Sign in and accept the competition rules if requested. Only these two archives
+are needed for this reproduction:
+
+| File | Purpose | Extracted location in the official repository |
+| --- | --- | --- |
+| `train_hq.zip` | 5,088 high-quality RGB car images used as model inputs | `data/imgs/` |
+| `train_masks.zip` | 5,088 reference masks identifying car and background pixels | `data/masks/` |
+
+An image such as `a1038b207299_14.jpg` pairs with
+`a1038b207299_14_mask.gif`. Put the extracted files directly in these folders.
+The original training code splits these pairs into training and validation sets.
+`train_masks.csv.zip`, `test.zip`, and `test_hq.zip` are not needed for this run.
+Download the archives on the cloud training instance, or upload them there after
+downloading through the Kaggle website.
 
 ## Reproduction workflow
 
@@ -77,3 +93,38 @@ The official implementation retains its GPL-3.0 license in the separate checkout
 This repository contributes reproduction documentation and experiment records.
 Public documents are in English. Git staging, commits, and pushes remain
 user-operated. Cloud shutdown is not yet confirmed in the local record.
+
+## Try a single image
+
+After training, run the following from the official `Pytorch-UNet` repository
+directory, using the prepared Python environment. It loads the epoch-5 weights
+and predicts a mask for one image:
+
+```bash
+mkdir -p predictions
+python predict.py \
+  --model checkpoints/checkpoint_epoch5.pth \
+  --input data/imgs/a1038b207299_14.jpg \
+  --output predictions/a1038b207299_14_pred.png \
+  --scale 0.5
+```
+
+The weights and dataset are not included in this documentation repository.
+Use the checkpoint produced by your training run or restore it from your backup.
+To try another RGB image, replace the input and output paths. A reference mask
+is not needed for prediction; it is needed to compare against the correct
+segmentation.
+
+### Prediction comparison
+
+The figure below shows the original image, its reference mask, and the prediction
+from the reloaded epoch-5 model. White marks the car and black marks the background
+in both masks.
+
+![Original image, reference mask, and epoch-5 prediction](reports/figures/prediction_comparison.png)
+
+The model captures much of the car silhouette but incorrectly includes some
+background on both sides. This is a visual example; the sample's membership in
+the training or validation split was not recorded. To inspect another example,
+compare its original image, matching reference mask (if available), and saved
+prediction side by side.
